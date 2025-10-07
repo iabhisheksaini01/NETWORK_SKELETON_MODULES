@@ -1,0 +1,14 @@
+resource "aws_vpc" "vpc" {
+  cidr_block           = var.vpc_cidr
+  enable_dns_support   = var.enable_dns_support
+  enable_dns_hostnames = var.enable_dns_hostnames
+  instance_tenancy     = var.instance_tenancy
+
+  tags = merge(var.common_tags, {
+    Name        = "${var.env}-${var.project_name}-vpc"
+    Environment = var.env
+    Owner       = var.owner
+    Project     = var.project_name
+  })
+}
+
